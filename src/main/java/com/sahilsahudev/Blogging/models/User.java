@@ -31,27 +31,22 @@ public class User implements UserDetails {
   private Role role;
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-  private List<Post> posts = new ArrayList<>();
+  private List<Post> posts;
 
   @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name="user_friends",
-          joinColumns=@JoinColumn(name="user_id"),
-          inverseJoinColumns=@JoinColumn(name="friend_id")
-  )
+  @JoinTable(name = "following",
+          joinColumns = @JoinColumn(name = "user_id"),
+          inverseJoinColumns = @JoinColumn(name = "following_id"))
   private List<User> following;
 
-  @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name="user_friends",
-          joinColumns=@JoinColumn(name="friend_id"),
-          inverseJoinColumns=@JoinColumn(name="user_id")
-  )
+  @ManyToMany(mappedBy = "following", fetch = FetchType.EAGER)
   private List<User> followers;
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-  private Set<Comment> comments = new HashSet<>();
+  private List<Comment> comments ;
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-  private Set<Like> likes = new HashSet<>();
+  private List<Like> likes ;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -6,10 +6,14 @@ import com.sahilsahudev.Blogging.models.User;
 import com.sahilsahudev.Blogging.repositories.UserRepository;
 import com.sahilsahudev.Blogging.services.UserService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Type;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,8 +30,6 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User", "Id", user_id.toString()));
 
         user.setName(userDto.getName());
-        user.setEmail(userDto.getEmail());
-
         User updated_user = this.userRepository.save(user);
 
         return this.userToDto(updated_user);
@@ -60,21 +62,61 @@ public class UserServiceImpl implements UserService {
     @Override
     public void followUser(Integer user, Integer userToFollow) {
 
+        if(user == userToFollow) return;
+
+        User firstUser = this.userRepository.findById(user)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "Id", user.toString()));
+
+        User secondUser = this.userRepository.findById(userToFollow)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userToFollow.toString()));
+
+        List<User> following = firstUser.getFollowing();
+
+        if(following.contains(secondUser)) return;
+
+        following.add(secondUser);
+        firstUser.setFollowing(following);
+
+        userRepository.save(firstUser);
     }
 
     @Override
     public void unfollowUser(Integer user, Integer userToUnfollow) {
+        User firstUser = this.userRepository.findById(user)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "Id", user.toString()));
 
+        User secondUser = this.userRepository.findById(userToUnfollow)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userToUnfollow.toString()));
+
+        List<User> following = firstUser.getFollowing();
+        following.remove(secondUser);
+        firstUser.setFollowing(following);
+
+        userRepository.save(firstUser);
     }
 
     @Override
     public List<UserDto> getFollowers(Integer user_id) {
-        return null;
+        User user =  this.userRepository.findById(user_id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "Id", user_id.toString()));
+        List<User> following = user.getFollowers();
+
+        Type listType = new TypeToken<List<UserDto>>() {}.getType();
+        List<UserDto> followersDto = modelMapper.map(following, listType);
+
+        return followersDto;
     }
 
     @Override
     public List<UserDto> getFollowing(Integer user_id) {
-        return null;
+        User user =  this.userRepository.findById(user_id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "Id", user_id.toString()));
+        List<User> following = user.getFollowing();
+
+        Type listType = new TypeToken<List<UserDto>>() {}.getType();
+        List<UserDto> followersDto = modelMapper.map(following, listType);
+
+        return followersDto;
     }
 
     private User dtoToUser(UserDto userDto) {
