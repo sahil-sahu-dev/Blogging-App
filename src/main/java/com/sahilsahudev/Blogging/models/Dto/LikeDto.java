@@ -18,7 +18,7 @@ public class LikeDto {
     @NotNull(message = "id cannot be null for like dto")
     private int id;
     @NotNull(message = "like must be associated with a user")
-    private User user;
+    private Integer userId;
     @NotNull(message = "like must be associated with a post")
-    private Post post;
+    private Integer postId;
 }

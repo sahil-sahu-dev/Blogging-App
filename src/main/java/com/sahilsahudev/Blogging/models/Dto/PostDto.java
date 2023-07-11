@@ -30,5 +30,6 @@ public class PostDto {
     @NotNull(message = "post cannot exist without a user")
     private UserDto user;
 
-    private Set<LikeDto> likes = new HashSet<>();
+    private List<LikeDto> likes;
+    private List<CommentDto> comments;
 }
