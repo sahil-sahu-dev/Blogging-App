@@ -1,6 +1,8 @@
 # Blogging-App
 Backend Blogging Application made using Spring Boot
 
+[ER Diagram](https://www.figma.com/file/6kpaZIVb1gqAalO6qIotaN/Blogging-App-ER-Diagram?type=whiteboard&node-id=0%3A1&t=zRtiP5V3wDf5mZcX-1)
+
 ## Features
 
 * Register using email id and password
