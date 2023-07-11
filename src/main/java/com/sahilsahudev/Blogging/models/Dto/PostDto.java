@@ -28,7 +28,7 @@ public class PostDto {
     @NotNull(message = "dateCreated cannot be null")
     private Date dateCreated;
     @NotNull(message = "post cannot exist without a user")
-    private User user;
+    private UserDto user;
 
-    private Set<Like> likes = new HashSet<>();
+    private Set<LikeDto> likes = new HashSet<>();
 }

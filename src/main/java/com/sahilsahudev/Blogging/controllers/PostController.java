@@ -1,14 +1,13 @@
 package com.sahilsahudev.Blogging.controllers;
 
 import com.sahilsahudev.Blogging.models.Dto.PostDto;
-import com.sahilsahudev.Blogging.models.Like;
-import com.sahilsahudev.Blogging.models.Post;
+import com.sahilsahudev.Blogging.payloads.post.CreatePostRequest;
+import com.sahilsahudev.Blogging.payloads.post.UpdatePostRequest;
 import com.sahilsahudev.Blogging.services.PostService;
 import com.sahilsahudev.Blogging.utils.APIResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,18 +26,18 @@ public class PostController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<PostDto> createPost(@RequestBody PostDto postDto) {
-        PostDto createdPostDto = postService.createPost(postDto);
+    public ResponseEntity<PostDto> createPost(@RequestBody CreatePostRequest createPostRequest) {
+        PostDto createdPostDto = postService.createPost(createPostRequest);
         return new ResponseEntity(createdPostDto, HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto) {
-        PostDto updatedPostDto = postService.updatePost(postDto);
+    public ResponseEntity<PostDto> updatePost(@RequestBody UpdatePostRequest updatePostRequest) {
+        PostDto updatedPostDto = postService.updatePost(updatePostRequest);
         return new ResponseEntity(updatedPostDto, HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/user/{userId}")
     public ResponseEntity<List<PostDto>> getPostsByUser(@PathVariable Integer userId) {
         List<PostDto> postDtos = postService.getPostsByUser(userId);
         return ResponseEntity.ok(postDtos);

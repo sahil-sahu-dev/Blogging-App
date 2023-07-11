@@ -1,4 +1,4 @@
-package com.sahilsahudev.Blogging.payloads;
+package com.sahilsahudev.Blogging.payloads.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

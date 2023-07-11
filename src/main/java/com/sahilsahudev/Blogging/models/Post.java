@@ -23,6 +23,7 @@ public class Post {
     private int id;
     private String title;
     @Lob
+    @Column(length = 65555)
     private String body;
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date dateCreated;

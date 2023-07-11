@@ -2,8 +2,8 @@ package com.sahilsahudev.Blogging.services.impl;
 
 import com.sahilsahudev.Blogging.config.JwtService;
 import com.sahilsahudev.Blogging.models.Dto.UserDto;
-import com.sahilsahudev.Blogging.payloads.AuthenticationRequest;
-import com.sahilsahudev.Blogging.payloads.AuthenticationResponse;
+import com.sahilsahudev.Blogging.payloads.auth.AuthenticationRequest;
+import com.sahilsahudev.Blogging.payloads.auth.AuthenticationResponse;
 import com.sahilsahudev.Blogging.models.Role;
 import com.sahilsahudev.Blogging.models.User;
 import com.sahilsahudev.Blogging.repositories.UserRepository;

@@ -1,7 +1,7 @@
 package com.sahilsahudev.Blogging.controllers;
 
-import com.sahilsahudev.Blogging.payloads.AuthenticationRequest;
-import com.sahilsahudev.Blogging.payloads.AuthenticationResponse;
+import com.sahilsahudev.Blogging.payloads.auth.AuthenticationRequest;
+import com.sahilsahudev.Blogging.payloads.auth.AuthenticationResponse;
 import com.sahilsahudev.Blogging.services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
