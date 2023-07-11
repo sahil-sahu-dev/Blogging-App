@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -20,10 +22,12 @@ public class Comment {
     private int id;
     private String details;
 
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date dateCreated;
+
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

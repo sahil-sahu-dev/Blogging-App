@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -17,8 +19,11 @@ public class CommentDto {
     @NotNull(message = "post id cannot be null")
     private int id;
     @NotNull(message = "comment must be associated with a post")
-    private Post post;
+    private Integer postId;
     @NotNull(message = "comment must be associated with a user")
-    private User user;
-    String details;
+    private Integer userId;
+    @Temporal(value = TemporalType.TIMESTAMP)
+    @NotNull(message = "dateCreated cannot be null")
+    private Date dateCreated;
+    private String details;
 }
