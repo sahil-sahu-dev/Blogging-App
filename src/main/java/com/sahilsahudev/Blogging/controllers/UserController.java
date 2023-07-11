@@ -1,6 +1,7 @@
 package com.sahilsahudev.Blogging.controllers;
 
 
+import com.sahilsahudev.Blogging.models.Dto.PostDto;
 import com.sahilsahudev.Blogging.models.Dto.UserDto;
 import com.sahilsahudev.Blogging.models.User;
 import com.sahilsahudev.Blogging.services.UserService;

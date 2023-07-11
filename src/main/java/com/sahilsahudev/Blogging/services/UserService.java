@@ -1,5 +1,6 @@
 package com.sahilsahudev.Blogging.services;
 
+import com.sahilsahudev.Blogging.models.Dto.PostDto;
 import com.sahilsahudev.Blogging.models.Dto.UserDto;
 import com.sahilsahudev.Blogging.models.User;
 
@@ -14,4 +15,5 @@ public interface UserService {
     void unfollowUser(Integer user, Integer userToUnfollow);
     List<UserDto> getFollowers(Integer user_id);
     List<UserDto> getFollowing(Integer user_id);
+
 }

@@ -12,4 +12,7 @@ public interface PostService {
     PostDto getPost(Integer post_id);
     void deletePost(Integer postId);
     List<PostDto> getPostsByUser(Integer user_id);
+
+    List<PostDto> fetchTimelineForUser(Integer user_id);
+
 }

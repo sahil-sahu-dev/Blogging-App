@@ -43,6 +43,12 @@ public class PostController {
         return ResponseEntity.ok(postDtos);
     }
 
+    @GetMapping("/user/{userId}/timeline")
+    public ResponseEntity<List<PostDto>> getTimelineForUser(@PathVariable Integer userId) {
+        List<PostDto> postDtos = postService.fetchTimelineForUser(userId);
+        return ResponseEntity.ok(postDtos);
+    }
+
     @DeleteMapping("/{postId}")
     public ResponseEntity<APIResponse> deletePost(@PathVariable Integer postId) {
         postService.deletePost(postId);

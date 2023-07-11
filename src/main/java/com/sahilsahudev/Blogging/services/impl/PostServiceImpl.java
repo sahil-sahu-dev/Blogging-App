@@ -12,8 +12,12 @@ import com.sahilsahudev.Blogging.repositories.UserRepository;
 import com.sahilsahudev.Blogging.services.PostService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -81,6 +85,14 @@ public class PostServiceImpl implements PostService {
         List<PostDto> postDtos = posts.stream().map(post -> this.postToDto(post)).collect(Collectors.toList());
         return postDtos;
 
+    }
+
+    @Override
+    public List<PostDto> fetchTimelineForUser(Integer user_id) {
+        List<Post> postList = postRepository.findPostsByFollowingOrderByDateCreatedDesc(user_id);
+        List<PostDto> postDtos = postList.stream().map(post -> this.postToDto(post)).collect(Collectors.toList());
+
+        return postDtos;
     }
 
     private Post dtoToPost(PostDto postDto) {
