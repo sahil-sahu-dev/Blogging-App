@@ -13,7 +13,7 @@ Backend Blogging Application made using Spring Boot
 
 ## APIs
 
-[Documentation](https://galactic-sunset-542723.postman.co/documentation/26163929-29c8c456-ca06-496a-8036-54562a782386/publish?workspaceId=652b9f91-ccf7-451b-bc4e-2839e4cb5b4e)
+[Documentation]([https://galactic-sunset-542723.postman.co/documentation/26163929-29c8c456-ca06-496a-8036-54562a782386/publish?workspaceId=652b9f91-ccf7-451b-bc4e-2839e4cb5b4e](https://documenter.getpostman.com/view/26163929/2s946bDFdz))
 
 Auth APIs
 * Register user: sign up
